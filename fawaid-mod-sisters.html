@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sisters Moderator Application — r/muslimbenefits</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --sage: #2D5016;
+    --sage-mid: #4A7C2F;
+    --sage-light: #8AB87A;
+    --sage-pale: #EBF3E4;
+    --sage-mist: #F5FAF2;
+    --white: #FFFFFF;
+    --ink: #1A2410;
+    --ink-soft: #3D4A35;
+    --border: #C8DFB8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--sage-mist);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page-wrap { max-width: 680px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    padding: 3rem 2rem 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--sage), var(--sage-light), var(--sage));
+  }
+
+  .bismillah {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--sage);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .header-tag {
+    display: inline-block;
+    background: var(--sage-pale);
+    color: var(--sage-mid);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--sage);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .header p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .notice {
+    background: var(--sage-pale);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--sage-mid);
+    padding: 1rem 1.25rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .notice strong { color: var(--sage); font-weight: 500; }
+
+  .form-body {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 2rem;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage-mid);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sage-pale);
+    margin-top: 2.25rem;
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+  .field { margin-bottom: 1.5rem; }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  label .required { color: var(--sage-mid); margin-left: 2px; }
+
+  label .hint {
+    display: block;
+    font-weight: 300;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.2rem;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--sage-mist);
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--sage-mid);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(74,124,47,0.1);
+  }
+
+  textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7C2F' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.5rem;
+  }
+
+  .option-group { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.25rem; }
+
+  .option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    background: var(--sage-mist);
+  }
+
+  .option-item:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+
+  .option-item input[type="radio"],
+  .option-item input[type="checkbox"] {
+    width: auto;
+    margin-top: 2px;
+    accent-color: var(--sage-mid);
+    flex-shrink: 0;
+  }
+
+  .option-item span { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.4; }
+
+  .submit-wrap {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sage-pale);
+    text-align: center;
+  }
+
+  .submit-wrap p {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  button[type="submit"] {
+    background: var(--sage);
+    color: var(--white);
+    border: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  button[type="submit"]:hover { background: var(--sage-mid); transform: translateY(-1px); }
+
+  .closing {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--sage-light);
+  }
+
+  @media (max-width: 480px) {
+    .header h1 { font-size: 1.6rem; }
+    .form-body { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="header">
+    <div class="bismillah">بسم الله الرحمن الرحيم</div>
+    <div class="header-tag">r/muslimbenefits — Sisters Only</div>
+    <h1>Moderator Application</h1>
+    <p>this community was created to benefit the people — to share reminders from the people of knowledge, connect people to them, and help us all get closer to الله, the creator and sustainer of the universe, while dispelling the doubts of our time. based upon the qur'aan and authentic sunnah upon the understanding of the salaf. we are looking for sisters who will carry this with knowledge, sincerity and good character.</p>
+  </div>
+
+  <div class="notice">
+    <strong>please read before applying.</strong> this application is for sisters only. all moderators are expected to maintain correct covering in any content shared, uphold the sunnah upon the understanding of the salaf, and conduct themselves with good character and respect in all interactions. applications are reviewed carefully — may الله reward you for your time.
+  </div>
+
+  <div class="form-body">
+    <form id="sisters-form" action="https://formspree.io/f/xykqzvep" method="POST">
+
+      <input type="hidden" name="form-type" value="Sisters Mod Application">
+
+      <div class="section-label">Basic Information</div>
+
+      <div class="field">
+        <label>Reddit username <span class="required">*</span></label>
+        <input type="text" name="reddit-username" placeholder="u/yourusername">
+      </div>
+
+      <div class="field">
+        <label>Your name <span class="required">*</span>
+          <span class="hint">stays between you and the admin team</span>
+        </label>
+        <input type="text" name="name" placeholder="e.g. Fatimah">
+      </div>
+
+      <div class="field">
+        <label>Country of residence <span class="required">*</span></label>
+        <input type="text" name="country" placeholder="e.g. United Kingdom">
+      </div>
+
+      <div class="field">
+        <label>How long have you been a muslim? <span class="required">*</span></label>
+        <select name="time-muslim">
+          <option value="" disabled selected>Select an option</option>
+          <option>Born muslim (whole life)</option>
+          <option>Less than 1 year</option>
+          <option>1–3 years</option>
+          <option>3–5 years</option>
+          <option>5–10 years</option>
+          <option>More than 10 years</option>
+        </select>
+      </div>
+
+      <div class="section-label">Understanding of the Religion</div>
+
+      <div class="field">
+        <label>How would you describe your approach to the religion? <span class="required">*</span></label>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="manhaj" value="salafi">
+            <span>following the qur'aan and sunnah upon the understanding of the early generations of islaam</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="manhaj" value="learning">
+            <span>still learning and seeking the correct understanding</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="manhaj" value="other">
+            <span>other — please explain below</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Which scholars do you take your knowledge from? <span class="required">*</span>
+          <span class="hint">e.g. ibn uthaymeen رحمه الله, ibn baz رحمه الله, al-albani رحمه الله — may الله have mercy on them — or contemporary scholars you follow</span>
+        </label>
+        <textarea name="scholars" placeholder="List the scholars whose knowledge you sit with..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>What is your understanding of the covering obligation for muslim women and its conditions? <span class="required">*</span>
+          <span class="hint">we want to understand your knowledge, not test you — be yourself</span>
+        </label>
+        <textarea name="hijab-understanding" style="min-height:120px" placeholder="Share your understanding..."></textarea>
+      </div>
+
+      <div class="section-label">Knowledge & Experience</div>
+
+      <div class="field">
+        <label>What islaamic knowledge do you have? <span class="required">*</span>
+          <span class="hint">courses, books studied, circles attended, languages you can read islaamic texts in etc</span>
+        </label>
+        <textarea name="islamic-knowledge" placeholder="Tell us about your background..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Do you have any experience moderating online islaamic spaces? <span class="required">*</span></label>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="mod-exp" value="yes">
+            <span>yes — I have moderated subreddits, Discord servers or similar spaces before</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="mod-exp" value="no">
+            <span>no — this would be my first time</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>How much time can you realistically give per week? <span class="required">*</span></label>
+        <select name="time-commitment">
+          <option value="" disabled selected>Select an option</option>
+          <option>1–3 hours</option>
+          <option>3–5 hours</option>
+          <option>5–10 hours</option>
+          <option>More than 10 hours</option>
+        </select>
+      </div>
+
+      <div class="section-label">Character & Community</div>
+
+      <div class="field">
+        <label>A sister posts something containing an error in her understanding of the religion but her intention seems sincere. How do you handle it? <span class="required">*</span></label>
+        <textarea name="scenario-error" placeholder="Walk us through your approach..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Why do you want to moderate this space and what do you hope it becomes? <span class="required">*</span></label>
+        <textarea name="why-and-vision" style="min-height:120px" placeholder="Be genuine..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Anything else you want us to know? <span class="required">*</span></label>
+        <textarea name="anything-else" placeholder="This is your space to speak freely..."></textarea>
+      </div>
+
+      <div class="section-label">Confirmation</div>
+
+      <div class="field">
+        <div class="option-group">
+          <label class="option-item">
+            <input type="checkbox" name="confirm-female">
+            <span>I am a sister (female)</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="confirm-character">
+            <span>I will conduct myself with good character and respect in all my interactions as a moderator</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="confirm-covering">
+            <span>I will maintain correct covering in any content I share in this space</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="confirm-knowledge">
+            <span>I understand that moderation decisions should be grounded in knowledge, not personal opinion or emotion</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="confirm-niyyah">
+            <span>I am applying sincerely for the sake of الله and the benefit of this community</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="submit-wrap">
+        <p>may الله reward you for your time. every application is read carefully and we will be in touch in sha' الله.</p>
+        <button type="submit">Submit Application</button>
+        <div id="sisters-status" style="margin-top:1rem;font-size:0.82rem;display:none;"></div>
+      </div>
+
+      <div class="closing">وبالله التوفيق</div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('sisters-form');
+  const status = document.getElementById('sisters-status');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    status.style.display = 'block';
+    if (response.ok) {
+      form.reset();
+      status.style.color = 'var(--sage)';
+      status.textContent = 'جزاكِ الله خيراً — your application has been received. we will be in touch in sha\' الله.';
+    } else {
+      status.style.color = '#c0392b';
+      status.textContent = 'something went wrong. please try again or reach out directly on Reddit.';
+    }
+  });
+</script>
+</body>
+</html>
