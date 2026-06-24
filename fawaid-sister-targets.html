@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawaid — Sister Mod Targets</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --cream: #F6F2FA;
+    --warm-white: #FFFFFF;
+    --terracotta: #9B8EC4;
+    --terracotta-pale: #F3EBF6;
+    --sage-deep: #7AADA0;
+    --sage-pale: #E8F3F2;
+    --lavender: #8BA8C4;
+    --lavender-pale: #EAF1F8;
+    --dusty-rose: #B49AAF;
+    --dusty-rose-pale: #F0EAF2;
+    --ink: #2C2416;
+    --ink-soft: #6B5E4E;
+    --ink-light: #9B8E82;
+    --border: #EAEAF7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { color-scheme: light only; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+  }
+
+  .topbar-brand span { color: var(--terracotta); font-style: italic; }
+
+  .topbar-tag {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    padding: 4rem 2rem 3rem;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dusty-rose);
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 1rem;
+    background: var(--dusty-rose-pale);
+    border-radius: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--dusty-rose); }
+
+  .hero p {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding: 0 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Target card */
+  .target-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .target-card-header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .target-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  .presence .target-number  { color: var(--terracotta); }
+  .sisters .target-number   { color: var(--dusty-rose); }
+  .content-t .target-number { color: var(--lavender); }
+  .guard .target-number     { color: var(--sage-deep); }
+  .escalate .target-number  { color: var(--terracotta); }
+  .grow .target-number      { color: var(--dusty-rose); }
+
+  .target-title-block {}
+
+  .target-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .target-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .target-body {
+    padding: 1.25rem 2rem 1.5rem;
+  }
+
+  .target-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .target-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .target-point {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .point-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+
+  .presence .point-dot  { background: var(--terracotta); }
+  .sisters .point-dot   { background: var(--dusty-rose); }
+  .content-t .point-dot { background: var(--lavender); }
+  .guard .point-dot     { background: var(--sage-deep); }
+  .escalate .point-dot  { background: var(--terracotta); }
+  .grow .point-dot      { background: var(--dusty-rose); }
+
+  /* Workflow card */
+  .workflow-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .workflow-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .workflow-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--sage-deep);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .workflow-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .workflow-subtitle {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-top: 0.15rem;
+  }
+
+  .workflow-steps {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .workflow-step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    position: relative;
+  }
+
+  .workflow-step:last-child { padding-bottom: 0; }
+
+  .workflow-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 0.9rem;
+    top: 1.8rem;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .step-marker {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    border: 1px solid var(--sage-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--sage-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-text {
+    padding-top: 0.2rem;
+  }
+
+  .step-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .step-detail {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Grace note */
+  .grace-note {
+    background: var(--dusty-rose-pale);
+    border-radius: 20px;
+    border: 1px solid #E2D3DF;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .grace-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--dusty-rose);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .grace-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .grace-text p {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-light);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.5rem 2rem; }
+    .target-card-header { padding: 1.25rem 1.5rem; }
+    .target-body { padding: 1rem 1.5rem 1.25rem; }
+    .workflow-header { padding: 1.25rem 1.5rem; }
+    .workflow-steps { padding: 1.25rem 1.5rem; }
+    .grace-note { padding: 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">faw<span>aid</span></div>
+  <div class="topbar-tag">sister mods — targets & responsibilities</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">للأخوات المشرفات</div>
+  <h1>your <em>targets</em></h1>
+  <p>these are the expectations held for sister mods. the aim is for every sister in this space to feel held, heard, and guided. these targets help make that real, ان شاء الله.</p>
+</div>
+
+<div class="content">
+
+  <div class="section-label">core responsibilities</div>
+
+  <!-- 1. Presence -->
+  <div class="target-card presence">
+    <div class="target-card-header">
+      <div class="target-number">١</div>
+      <div class="target-title-block">
+        <div class="target-eyebrow">target one</div>
+        <div class="target-title">daily presence, with flexibility</div>
+      </div>
+    </div>
+    <div class="target-body">
+      <div class="target-desc">the ideal is to check in daily — this keeps the sisters' section active and means no question or concern sits unanswered for long. that said, life varies, and consistency matters more than perfection.</div>
+      <div class="target-points">
+        <div class="target-point">
+          <div class="point-dot"></div>
+          check in daily where possible — even a brief scan of the sisters-only section counts
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          if you know you'll be away, please let the team know so cover can be arranged
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          prolonged absence without notice may result in a check-in from the mod team
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Sisters section -->
+  <div class="target-card sisters">
+    <div class="target-card-header">
+      <div class="target-number">٢</div>
+      <div class="target-title-block">
+        <div class="target-eyebrow">target two</div>
+        <div class="target-title">build and hold the sisters' space</div>
+      </div>
+    </div>
+    <div class="target-body">
+      <div class="target-desc">the sisters-only section should feel like a space sisters actually want to use — warm, purposeful, and distinct from the general feed. sister mods are responsible for making that section feel alive.</div>
+      <div class="target-points">
+        <div class="target-point">
+          <div class="point-dot"></div>
+          make regular posts in the sisters-only section — reminders, beneficial content, check-ins, questions for reflection
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          respond to sisters who post there — no question should go ignored
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          be a warm, consistent presence so sisters feel they can actually come to the space with real things
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Content -->
+  <div class="target-card content-t">
+    <div class="target-card-header">
+      <div class="target-number">٣</div>
+      <div class="target-title-block">
+        <div class="target-eyebrow">target three</div>
+        <div class="target-title">contribute content and knowledge</div>
+      </div>
+    </div>
+    <div class="target-body">
+      <div class="target-desc">sister mods are not just moderators — they are contributors. the goal is a sisters' section rich with beneficial content, not just a space for queries and replies.</div>
+      <div class="target-points">
+        <div class="target-point">
+          <div class="point-dot"></div>
+          share reminders, athkar, beneficial quotes, or reflections relevant to sisters
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          you may also contribute to the general feed — posts that benefit the broader community are welcome
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          speak only with knowledge — if unsure, refer to the iftaa role or the general mod team rather than guessing
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Guard -->
+  <div class="target-card guard">
+    <div class="target-card-header">
+      <div class="target-number">٤</div>
+      <div class="target-title-block">
+        <div class="target-eyebrow">target four</div>
+        <div class="target-title">guard the boundaries of the space</div>
+      </div>
+    </div>
+    <div class="target-body">
+      <div class="target-desc">rule 8 governs how brothers and sisters interact in this community. sister mods are the first line of enforcement for the sisters' section — this is not about policing, it is about protecting.</div>
+      <div class="target-points">
+        <div class="target-point">
+          <div class="point-dot"></div>
+          please remove any men's comments that appear in sisters-only posts without hesitation
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          flag or redirect any private DM requests between brothers and sisters — this applies to you too as a mod
+        </div>
+        <div class="target-point">
+          <div class="point-dot"></div>
+          uphold rule 8 consistently and without exception — the community trusts the space because you hold it
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Escalation workflow -->
+  <div class="section-label" style="margin-top:0.5rem;">queries + discussions</div>
+
+  <div class="workflow-card escalate">
+    <div class="workflow-header">
+      <div class="workflow-icon">↑</div>
+      <div>
+        <div class="workflow-title">how to handle sisters' queries + discussions</div>
+        <div class="workflow-subtitle">follow this order — do not skip steps</div>
+      </div>
+    </div>
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="step-marker">١</div>
+        <div class="step-text">
+          <div class="step-label">direct sisters to the sisters-only section</div>
+          <div class="step-detail">if you see a general post by a sister that is better suited for sisters only, please remove it and dm her kindly to repost it there instead.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-marker">٢</div>
+        <div class="step-text">
+          <div class="step-label">respond if you are able</div>
+          <div class="step-detail">if the query is within your knowledge, answer it clearly and with evidence where needed. if it requires iftaa-level knowledge, say so.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-marker">٣</div>
+        <div class="step-text">
+          <div class="step-label">if unsatisfied — escalate via mod mail</div>
+          <div class="step-detail">if no answer satisfies the sister, please raise it with the general mod team through mod mail. keep it focused — help and the answer only, no unnecessary back-and-forth.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-marker">٤</div>
+        <div class="step-text">
+          <div class="step-label">or direct to a general post if it benefits brothers too</div>
+          <div class="step-detail">if the question is likely to benefit the broader community, encourage her to repost in the general feed — it becomes a فائدة for everyone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grace note -->
+  <div class="grace-note">
+    <div class="grace-icon">♡</div>
+    <div class="grace-text">
+      <h3>a note on flexibility</h3>
+      <p>we are starting with four sister mods and building to eight, ان شاء الله. the team is small and real life varies — these targets are a direction, not a rigid checklist. what matters most is sincerity, consistency over time, and genuine care for the sisters in this space. communicate openly with the team if something becomes difficult.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">وبالله التوفيق — and with الله is all success</div>
+
+</body>
+</html>
