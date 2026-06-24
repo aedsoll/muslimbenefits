@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawaid — Our Vision</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --cream: #F6F2FA;
+    --warm-white: #FFFFFF;
+    --dusty-rose: #E8D5C4;
+    --sage: #B5C4B1;
+    --sage-deep: #7AADA0;
+    --terracotta: #9B8EC4;
+    --terracotta-pale: #F3EBF6;
+    --mist: #EAF1F8;
+    --lavender: #8BA8C4;
+    --lavender-pale: #EAF1F8;
+    --ink: #2C2416;
+    --ink-soft: #6B5E4E;
+    --ink-light: #9B8E82;
+    --border: #EAEAF7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+  }
+
+  .topbar-brand span {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .topbar-tag {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 1rem;
+    background: var(--terracotta-pale);
+    border-radius: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-arabic {
+    font-size: 1.4rem;
+    color: var(--sage-deep);
+    margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .phases {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .phase {
+    background: var(--warm-white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .phase-header {
+    padding: 2rem 2.5rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .phase-1 .phase-number { color: var(--terracotta); }
+  .phase-2 .phase-number { color: var(--sage-deep); }
+  .phase-3 .phase-number { color: #9B8EC4; }
+
+  .phase-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .phase-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-top: 0.5rem;
+  }
+
+  .phase-items {
+    padding: 1.75rem 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .item {
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .phase-1 .item { background: #F6F2FA; }
+  .phase-2 .item { background: #EAF1F8; }
+  .phase-3 .item { background: #E8F3F2; }
+
+  .item-title {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .item-desc {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-light);
+  }
+
+  @media (max-width: 600px) {
+    .phase-header { flex-direction: column; gap: 0.5rem; }
+    .phase-number { font-size: 2.5rem; }
+    .phase-items { grid-template-columns: 1fr; padding: 1.25rem 1.5rem 1.5rem; }
+    .phase-header { padding: 1.5rem; }
+    .hero { padding: 3rem 1.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">faw<span>aid</span></div>
+  <div class="topbar-tag">r/muslimbenefits — our vision</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">بسم الله الرحمن الرحيم</div>
+  <h1>where we are <em>going</em></h1>
+  <div class="hero-arabic">ان شاء الله</div>
+  <p>a community created to benefit the people — to share reminders from the people of knowledge, connect people to them, and help us all get closer to الله, the creator and sustainer of the universe, while dispelling the doubts of our time. based upon the qur'aan and sunnah upon the understanding of the salaf.</p>
+</div>
+
+<div class="phases">
+
+  <!-- Phase 1 -->
+  <div class="phase phase-1">
+    <div class="phase-header">
+      <div class="phase-number">01</div>
+      <div class="phase-header-text">
+        <div class="phase-label">first</div>
+        <div class="phase-title">presenting as a functioning group</div>
+        <div class="phase-desc">properly establishing ourselves as a community that can assist and intervene in other spaces on Reddit, bringing more traffic to the group and representing the deen with knowledge and good character</div>
+      </div>
+    </div>
+    <div class="phase-items">
+      <div class="item">
+        <div class="item-title">community engagement</div>
+        <div class="item-desc">actively and respectfully engaging in relevant spaces across Reddit to bring awareness to the group and what it stands for</div>
+      </div>
+      <div class="item">
+        <div class="item-title">moderation team</div>
+        <div class="item-desc">bringing in brothers and sisters upon the correct understanding, with knowledge and good character to hold the space properly — applications are open</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase phase-2">
+    <div class="phase-header">
+      <div class="phase-number">02</div>
+      <div class="phase-header-text">
+        <div class="phase-label">second</div>
+        <div class="phase-title">improving the quality of what we offer</div>
+        <div class="phase-desc">building a space that people can genuinely benefit from across all areas of life, not just reminders — but resources that help brothers and sisters live well</div>
+      </div>
+    </div>
+    <div class="phase-items">
+      <div class="item">
+        <div class="item-title">knowledge resources</div>
+        <div class="item-desc">reliable, properly sourced islaamic content connected to the people of knowledge — no weak daleel, no misattributed quotes</div>
+      </div>
+      <div class="item">
+        <div class="item-title">health and wellness</div>
+        <div class="item-desc">practical content for brothers and sisters on physical and mental wellbeing grounded in a balanced islaamic framework</div>
+      </div>
+      <div class="item">
+        <div class="item-title">alternative entertainment</div>
+        <div class="item-desc">giving brothers and sisters something worth their time — content that benefits rather than corrupts</div>
+      </div>
+      <div class="item">
+        <div class="item-title">healthy parenting</div>
+        <div class="item-desc">resources for raising children well — upon the correct understanding, with wisdom and love</div>
+      </div>
+      <div class="item">
+        <div class="item-title">business and work</div>
+        <div class="item-desc">professional development, entrepreneurship and financial literacy for the community grounded in halal principles</div>
+      </div>
+      <div class="item">
+        <div class="item-title">structure and branding</div>
+        <div class="item-desc">proper flairs, roles, a rules review and a revamped aesthetic that actually reflects who we are</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase phase-3">
+    <div class="phase-header">
+      <div class="phase-number">03</div>
+      <div class="phase-header-text">
+        <div class="phase-label">third</div>
+        <div class="phase-title">building a bigger community presence</div>
+        <div class="phase-desc">moving beyond Reddit — setting up the infrastructure for real connection, real support and the beginning of real world impact</div>
+      </div>
+    </div>
+    <div class="phase-items">
+      <div class="item">
+        <div class="item-title">WhatsApp communities</div>
+        <div class="item-desc">segregated brothers and sisters groups for socialisation and knowledge initiatives — a funnel toward deeper community connection</div>
+      </div>
+      <div class="item">
+        <div class="item-title">trajectory to real world impact</div>
+        <div class="item-desc">this is only the beginning — the goal is a global community with initiatives that reach and serve muslims wherever they are, ان شاء الله</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">وبالله التوفيق — and with الله is all success</div>
+
+</body>
+</html>

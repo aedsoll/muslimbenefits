@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawaid — Moderator Roles</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --cream: #F6F2FA;
+    --warm-white: #FFFFFF;
+    --terracotta: #9B8EC4;
+    --terracotta-pale: #F3EBF6;
+    --sage-deep: #7AADA0;
+    --sage-pale: #E8F3F2;
+    --lavender: #8BA8C4;
+    --lavender-pale: #EAF1F8;
+    --dusty-rose: #B49AAF;
+    --dusty-rose-pale: #F0EAF2;
+    --ink: #2C2416;
+    --ink-soft: #6B5E4E;
+    --ink-light: #9B8E82;
+    --border: #EAEAF7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+  }
+
+  .topbar-brand span { color: var(--terracotta); font-style: italic; }
+
+  .topbar-tag {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    padding: 4rem 2rem 3rem;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    padding: 0.35rem 1rem;
+    background: var(--terracotta-pale);
+    border-radius: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--terracotta); }
+
+  .hero p {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Role card */
+  .role-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .role-header {
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .role-header-left {}
+
+  .role-arabic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .iftaa .role-arabic { color: var(--terracotta); }
+  .uns .role-arabic { color: var(--lavender); }
+  .rawh .role-arabic { color: var(--sage-deep); }
+
+  .role-name {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .role-meaning {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .role-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .iftaa .role-tag { background: var(--terracotta-pale); color: var(--terracotta); }
+  .uns .role-tag { background: var(--lavender-pale); color: var(--lavender); }
+  .rawh .role-tag { background: var(--sage-pale); color: var(--sage-deep); }
+
+  .role-desc {
+    padding: 1.25rem 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    font-weight: 300;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Mods list */
+  .role-mods {
+    padding: 1.5rem 2.5rem;
+  }
+
+  .mods-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .mod-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .mod-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 0.83rem;
+  }
+
+  .iftaa .mod-item { background: #F6F2FA; }
+  .uns .mod-item { background: #EAF1F8; }
+  .rawh .mod-item { background: #E8F3F2; }
+
+  .mod-username {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .mod-status {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--ink-light);
+  }
+
+  .mod-item.placeholder {
+    border-style: dashed;
+    background: transparent;
+  }
+
+  .mod-item.placeholder .mod-username {
+    font-weight: 300;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  /* Overlap note */
+  .overlap-note {
+    background: var(--warm-white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .overlap-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .overlap-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .overlap-text p {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-light);
+  }
+
+  @media (max-width: 600px) {
+    .role-header { flex-direction: column; padding: 1.5rem; }
+    .role-desc { padding: 1rem 1.5rem; }
+    .role-mods { padding: 1.25rem 1.5rem; }
+    .hero { padding: 3rem 1.5rem 2rem; }
+    .overlap-note { padding: 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">faw<span>aid</span></div>
+  <div class="topbar-tag">r/muslimbenefits — moderator roles</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">بسم الله الرحمن الرحيم</div>
+  <h1>the <em>team</em></h1>
+  <p>those who hold this space are held to the standard of the prophetic example — knowledge, good character, and genuine care for the community. roles may overlap and will be updated as the team grows, ان شاء الله.</p>
+</div>
+
+<div class="content">
+
+  <!-- Iftaa -->
+  <div class="role-card iftaa">
+    <div class="role-header">
+      <div class="role-header-left">
+        <div class="role-name">role one</div>
+        <div class="role-arabic">إفتاء</div>
+        <div class="role-meaning">iftaa — religious rulings and knowledge</div>
+      </div>
+      <div class="role-tag">religious knowledge</div>
+    </div>
+    <div class="role-desc">
+      for those who are equipped to respond to questions about the deen — rulings, evidences, clarifications on matters of aqeedah and fiqh. those holding this role are expected to speak with knowledge, refer to the people of knowledge where necessary, and never speak without a basis.
+    </div>
+    <div class="role-mods">
+      <div class="mods-label">current — iftaa</div>
+      <div class="mod-list">
+        <div class="mod-item placeholder">
+          <span class="mod-username">open — applications welcome</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Uns -->
+  <div class="role-card uns">
+    <div class="role-header">
+      <div class="role-header-left">
+        <div class="role-name">role two</div>
+        <div class="role-arabic">أنس</div>
+        <div class="role-meaning">uns — warmth, companionship, comfort</div>
+      </div>
+      <div class="role-tag">emotional support</div>
+    </div>
+    <div class="role-desc">
+      for those who are able to hold space for community members going through difficulty — with patience, empathy and wisdom. uns is about being present, not just giving answers. those in this role listen first and respond with care, always pointing people toward الله and the people around them.
+    </div>
+    <div class="role-mods">
+      <div class="mods-label">current — uns</div>
+      <div class="mod-list">
+        <div class="mod-item">
+          <span class="mod-username">u/Glum-Technology5409</span>
+        </div>
+        <div class="mod-item placeholder">
+          <span class="mod-username">open — applications welcome</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rawh -->
+  <div class="role-card rawh">
+    <div class="role-header">
+      <div class="role-header-left">
+        <div class="role-name">role three</div>
+        <div class="role-arabic">رَوْح</div>
+        <div class="role-meaning">rawh — relief, ease, practical guidance</div>
+      </div>
+      <div class="role-tag">practical advice</div>
+    </div>
+    <div class="role-desc">
+      for those who can help community members navigate real life — work, relationships, decisions, finances, personal situations. rawh is about bringing relief through grounded, sensible guidance that is rooted in the deen but meets people where they actually are.
+    </div>
+    <div class="role-mods">
+      <div class="mods-label">current — rawh</div>
+      <div class="mod-list">
+        <div class="mod-item">
+          <span class="mod-username">u/Reverting-With-You</span>
+        </div>
+        <div class="mod-item">
+          <span class="mod-username">u/Fantastic-Spirit7378</span>
+        </div>
+        <div class="mod-item placeholder">
+          <span class="mod-username">open — applications welcome</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlap note -->
+  <div class="overlap-note">
+    <div class="overlap-icon">﹡</div>
+    <div class="overlap-text">
+      <h3>roles are not rigid</h3>
+      <p>these three roles will naturally overlap — a conversation about a practical situation often needs emotional care, and emotional support often calls for knowledge. moderators may hold more than one role, and assignments will be updated as the team grows and we understand people's strengths better. what matters most is good character and sincerity in serving the community.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">وبالله التوفيق — and with الله is all success</div>
+
+</body>
+</html>
